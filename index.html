@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link
+      as="style"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+      onload="this.rel='stylesheet'"
+      rel="stylesheet"
+    />
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+      :root {
+        --primary-color: #0c7ff2;
+        --secondary-bg: #182634;
+        --border-color: #223649;
+        --text-muted: #90adcb;
+      }
+      body {
+        font-family: "Space Grotesk", "Noto Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-[#101a23] text-white">
+    <div
+      class="relative flex size-full min-h-screen flex-col overflow-x-hidden"
+    >
+      <header class="sticky top-0 z-50 w-full bg-[#101a23]/80 backdrop-blur-sm">
+        <div
+          class="layout-container mx-auto flex h-full max-w-7xl grow flex-col"
+        >
+          <div
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)] px-10 py-4"
+          >
+            <div class="flex items-center gap-3 text-white">
+              <div class="size-6 text-[var(--primary-color)]">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.24L12 12.74L20 8.24V15.76L12 20.26L4 15.76V8.24ZM12 4.47L18.93 8L12 11.53L5.07 8L12 4.47Z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white text-xl font-bold leading-tight tracking-tight"
+              >
+                PixelCraft
+              </h2>
+            </div>
+            <nav class="hidden items-center gap-8 md:flex">
+              <a
+                class="text-sm font-medium leading-normal text-white/90 transition-colors hover:text-white"
+                href="#"
+                >Home</a
+              >
+              <a
+                class="text-sm font-medium leading-normal text-white/90 transition-colors hover:text-white"
+                href="#"
+                >Projects</a
+              >
+              <a
+                class="text-sm font-medium leading-normal text-white/90 transition-colors hover:text-white"
+                href="#"
+                >About</a
+              >
+              <a
+                class="text-sm font-medium leading-normal text-white/90 transition-colors hover:text-white"
+                href="#"
+                >Contact</a
+              >
+            </nav>
+            <div class="flex items-center gap-4">
+              <button
+                class="hidden max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-[var(--secondary-bg)] text-white/90 transition-colors hover:bg-[var(--border-color)] hover:text-white lg:flex"
+              >
+                <div
+                  data-icon="MagnifyingGlass"
+                  data-size="20px"
+                  data-weight="regular"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="20px"
+                    viewBox="0 0 256 256"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACZunTsRl-LbMjoOe4-UL7wl9GSbHvCGymLI8SfV2w1zMEXjImBQJ-_605evdGWwOYuTO4Mbh7GJal8EIgG4dgilrhzaaysrj_Zxz8ttFDk2dDi99zzwqoebCg8eCj4M7OzkcZkKEYlwsP1DjlVzLEwjwEd2LjCzepIVwp2igquHpWdxSq3ICYH0eUG6QNwQBSMOuqatMKiJ4oou86qbvB0xJw-cH1i9fCe7ttjHNvDROnBUudSpKswI1kTSwBIirIwZgCFxRGh84');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="flex-1">
+        <div
+          class="mx-auto flex max-w-7xl flex-1 flex-col px-4 sm:px-6 lg:px-8"
+        >
+          <section class="relative my-16 @container sm:my-20 md:my-24">
+            <div class="absolute inset-0 -z-10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-[#101a23]"
+              ></div>
+            </div>
+            <div
+              class="flex min-h-[480px] flex-col items-center justify-center gap-6 rounded-3xl bg-cover bg-center bg-no-repeat p-4 text-center"
+              style="
+                background-image: linear-gradient(
+                    rgba(16, 26, 35, 0.5) 0%,
+                    rgb(16, 26, 35) 100%
+                  ),
+                  url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDf_P_UEpxLopsseEpzMSrBlstAnx4oVoPl-QttfGXLwl0EU8JK8Jg2_8V2NO3Crz1TVBw9Mk_A3B2AAnlJ1maD1OzKbkI86QOcr4-V-Cqcx6NydEQz2erMOk5Gzs364N2dHWO9nS_AQEYpIIcI60sJjL2ne8eAU_0vuzXp-d6xciKCLvH3FOM295xKA60l_Bvv8hxdubgdWwykB8RyTNU2SdOdkFG35xPvsVq1PBLd5Xz4Jl1NzwmNwzEOx-MASN5ZukzicPGtRI');
+              "
+            >
+              <div class="flex flex-col gap-2">
+                <h1
+                  class="text-5xl font-black leading-tight tracking-tighter text-white sm:text-6xl md:text-7xl"
+                >
+                  Ava Sterling
+                </h1>
+                <p class="text-lg font-medium text-white/80 sm:text-xl">
+                  Game Developer | Crafting Immersive Worlds
+                </p>
+              </div>
+              <button
+                class="flex min-w-[84px] max-w-[480px] transform cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[var(--primary-color)] px-6 py-3 text-base font-bold text-white shadow-lg transition-transform hover:scale-105"
+              >
+                <span class="truncate">View My Work</span>
+              </button>
+            </div>
+          </section>
+          <section class="my-12">
+            <h2
+              class="px-4 pb-6 pt-5 text-center text-3xl font-bold tracking-tight text-white"
+            >
+              Core Competencies
+            </h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div
+                class="flex flex-col items-center gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--secondary-bg)] p-6 text-center"
+              >
+                <div
+                  class="rounded-full bg-[var(--border-color)] p-4 text-[var(--primary-color)]"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="32"
+                    viewBox="0 0 256 256"
+                    width="32"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold leading-tight text-white">
+                  Game Programming
+                </h3>
+              </div>
+              <div
+                class="flex flex-col items-center gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--secondary-bg)] p-6 text-center"
+              >
+                <div
+                  class="rounded-full bg-[var(--border-color)] p-4 text-[var(--primary-color)]"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="32"
+                    viewBox="0 0 256 256"
+                    width="32"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM136,75.31,152.69,92,68,176.69,51.31,160ZM48,208V179.31L76.69,208Zm48-3.31L79.32,188,164,103.31,180.69,120Zm96-96L147.32,64l24-24L216,84.69Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold leading-tight text-white">
+                  Level Design
+                </h3>
+              </div>
+              <div
+                class="flex flex-col items-center gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--secondary-bg)] p-6 text-center"
+              >
+                <div
+                  class="rounded-full bg-[var(--border-color)] p-4 text-[var(--primary-color)]"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="32"
+                    viewBox="0 0 256 256"
+                    width="32"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M176,112H152a8,8,0,0,1,0-16h24a8,8,0,0,1,0,16ZM104,96H96V88a8,8,0,0,0-16,0v8H72a8,8,0,0,0,0,16h8v8a8,8,0,0,0,16,0v-8h8a8,8,0,0,0,0-16ZM241.48,200.65a36,36,0,0,1-54.94,4.81c-.12-.12-.24-.24-.35-.37L146.48,160h-37L69.81,205.09l-.35.37A36.08,36.08,0,0,1,44,216,36,36,0,0,1,8.56,173.75a.68.68,0,0,1,0-.14L24.93,89.52A59.88,59.88,0,0,1,83.89,40H172a60.08,60.08,0,0,1,59,49.25c0,.06,0,.12,0,.18l16.37,84.17a.68.68,0,0,1,0,.14A35.74,35.74,0,0,1,241.48,200.65ZM172,144a44,44,0,0,0,0-88H83.89A43.9,43.9,0,0,0,40.68,92.37l0,.13L24.3,176.59A20,20,0,0,0,58,194.3l41.92-47.59a8,8,0,0,1,6-2.71Zm59.7,32.59-8.74-45A60,60,0,0,1,172,160h-4.2L198,194.31a20.09,20.09,0,0,0,17.46,5.39,20,20,0,0,0,16.23-23.11Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold leading-tight text-white">
+                  Gameplay Mechanics
+                </h3>
+              </div>
+              <div
+                class="flex flex-col items-center gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--secondary-bg)] p-6 text-center"
+              >
+                <div
+                  class="rounded-full bg-[var(--border-color)] p-4 text-[var(--primary-color)]"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="32"
+                    viewBox="0 0 256 256"
+                    width="32"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M210.3,56.34l-80-24A8,8,0,0,0,120,40V148.26A48,48,0,1,0,136,184V98.75l69.7,20.91A8,8,0,0,0,216,112V64A8,8,0,0,0,210.3,56.34ZM88,216a32,32,0,1,1,32-32A32,32,0,0,1,88,216ZM200,101.25l-64-19.2V50.75L200,70Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold leading-tight text-white">
+                  Sound Design
+                </h3>
+              </div>
+            </div>
+          </section>
+          <section class="my-12">
+            <h2
+              class="px-4 pb-8 pt-5 text-center text-3xl font-bold tracking-tight text-white"
+            >
+              Featured Projects
+            </h2>
+            <div class="space-y-16">
+              <div
+                class="grid grid-cols-1 items-center gap-8 rounded-2xl bg-[var(--secondary-bg)] p-8 shadow-lg lg:grid-cols-2 lg:gap-12"
+              >
+                <div
+                  class="aspect-video w-full overflow-hidden rounded-xl"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrPIALp99OKkghNbOh8UBasOSGrOH5VdwS7Ey1dPsu-jyRIizHnoXw2gDPjWYt03yl1KXiSZisw1itZHjUn39sTgX-m0X4AQsgaCffvgAGDAavEzDIZ1RUGvGcZW89I6edE6r1-7MsFpGOBRIsaCe2_XigR1y8TDMxkg18lFBIl2Rd7VBvj83fq6CoHG8jKTH_AbuBxn86WLcG8S8GciekcNlEG6zDVRddjejb4jYqgCW7d1M5f-QKhnsufEuqDdc19RZ8Wh_sMMI');
+                    background-size: cover;
+                    background-position: center;
+                  "
+                ></div>
+                <div class="flex flex-col gap-3">
+                  <p class="text-sm font-medium text-[var(--primary-color)]">
+                    Action RPG
+                  </p>
+                  <h3 class="text-2xl font-bold tracking-tight text-white">
+                    Echoes of Eldoria
+                  </h3>
+                  <p
+                    class="text-base font-normal leading-relaxed text-[var(--text-muted)]"
+                  >
+                    Embark on an epic journey through the mystical land of
+                    Eldoria, battling mythical creatures and uncovering ancient
+                    secrets.
+                  </p>
+                  <div class="mt-4">
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[var(--primary-color)] px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                    >
+                      <span class="truncate">View Project</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-1 items-center gap-8 rounded-2xl bg-[var(--secondary-bg)] p-8 shadow-lg lg:grid-cols-2 lg:gap-12"
+              >
+                <div class="flex flex-col gap-3 lg:order-2">
+                  <p class="text-sm font-medium text-[var(--primary-color)]">
+                    Puzzle Adventure
+                  </p>
+                  <h3 class="text-2xl font-bold tracking-tight text-white">
+                    Chronoscape
+                  </h3>
+                  <p
+                    class="text-base font-normal leading-relaxed text-[var(--text-muted)]"
+                  >
+                    Solve intricate puzzles across different time periods in
+                    Chronoscape, a mind-bending adventure game.
+                  </p>
+                  <div class="mt-4">
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[var(--primary-color)] px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                    >
+                      <span class="truncate">View Project</span>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="aspect-video w-full overflow-hidden rounded-xl lg:order-1"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhj-vD6t_T24epRMI2pUgUIU6YsoBulX1FHqEpxnpVIkA1LmCVv90YMKuA-C0R4Kaqfm0e2QcCLakNu7e5hgHHqwKdtXwwnyw9ZgW_9sO6T7tDQAo2ZNepWTYuEb38Pb7xxbupdUYiCvnu7dl8KzB-YJLjbiJXv_8FlGCNZj9pX0sUrUiXMESXNUzMdS-rQOdH9qeK58l0VQE8VEV5ueZf9f0hV07G8W4jUSNKlecQwrlkF_xGEkYkw33HTgUb_YD_wJ7bIpgMU_g');
+                    background-size: cover;
+                    background-position: center;
+                  "
+                ></div>
+              </div>
+              <div
+                class="grid grid-cols-1 items-center gap-8 rounded-2xl bg-[var(--secondary-bg)] p-8 shadow-lg lg:grid-cols-2 lg:gap-12"
+              >
+                <div
+                  class="aspect-video w-full overflow-hidden rounded-xl"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3d5K5d6yH2dpZaR8LeuCmfQjR749yRf6BWQ2zR4h0szJwAVUpPh1ucvjOkk7wchnUYQNEjpuBaL3HMPxFHo5jogF0hXf4-RbDiG5YAthgYkRfyVdf_NA4L397oq1VNvN4OsgbYoZiyKnSYQmB6CzRhQqq2rFdV8U9TWpl0s48qYG5Yj1FNj21xnyV9OWp--x7t5h0lIbxjiN8wXCTe4nQcofNthIDFHMCON38CT9y1Qlxz0pxPafh1LUrotvu-UdMcX445V4VgxE');
+                    background-size: cover;
+                    background-position: center;
+                  "
+                ></div>
+                <div class="flex flex-col gap-3">
+                  <p class="text-sm font-medium text-[var(--primary-color)]">
+                    Strategy Simulation
+                  </p>
+                  <h3 class="text-2xl font-bold tracking-tight text-white">
+                    Galactic Conquest
+                  </h3>
+                  <p
+                    class="text-base font-normal leading-relaxed text-[var(--text-muted)]"
+                  >
+                    Command your fleet and conquer the galaxy in this immersive
+                    strategy simulation game.
+                  </p>
+                  <div class="mt-4">
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[var(--primary-color)] px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                    >
+                      <span class="truncate">View Project</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="my-20">
+            <div
+              class="grid grid-cols-1 gap-12 rounded-2xl bg-[var(--secondary-bg)] p-12 lg:grid-cols-3"
+            >
+              <div class="lg:col-span-1">
+                <h2 class="text-3xl font-bold tracking-tight text-white">
+                  About Me
+                </h2>
+                <p
+                  class="mt-4 text-base font-normal leading-relaxed text-[var(--text-muted)]"
+                >
+                  I'm a passionate game developer with over 5 years of
+                  experience in the industry. My focus is on creating engaging
+                  and immersive experiences that captivate players. I specialize
+                  in action RPGs, puzzle adventures, and strategy simulations,
+                  bringing unique and innovative gameplay to each project.
+                </p>
+              </div>
+              <div class="lg:col-span-2">
+                <h2 class="text-3xl font-bold tracking-tight text-white">
+                  Get In Touch
+                </h2>
+                <form class="mt-6 space-y-6">
+                  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <label class="flex flex-col">
+                      <p class="pb-2 text-base font-medium text-white">Email</p>
+                      <input
+                        class="form-input w-full resize-none rounded-lg border border-[var(--border-color)] bg-[#101a23] p-4 text-base text-white placeholder:text-[var(--text-muted)] focus:border-[var(--primary-color)] focus:outline-0 focus:ring-1 focus:ring-[var(--primary-color)]"
+                        placeholder="Your Email"
+                      />
+                    </label>
+                    <label class="flex flex-col">
+                      <p class="pb-2 text-base font-medium text-white">Name</p>
+                      <input
+                        class="form-input w-full resize-none rounded-lg border border-[var(--border-color)] bg-[#101a23] p-4 text-base text-white placeholder:text-[var(--text-muted)] focus:border-[var(--primary-color)] focus:outline-0 focus:ring-1 focus:ring-[var(--primary-color)]"
+                        placeholder="Your Name"
+                      />
+                    </label>
+                  </div>
+                  <label class="flex flex-col">
+                    <p class="pb-2 text-base font-medium text-white">Message</p>
+                    <textarea
+                      class="form-textarea w-full resize-none rounded-lg border border-[var(--border-color)] bg-[#101a23] p-4 text-base text-white placeholder:text-[var(--text-muted)] focus:border-[var(--primary-color)] focus:outline-0 focus:ring-1 focus:ring-[var(--primary-color)]"
+                      placeholder="Your Message"
+                      rows="5"
+                    ></textarea>
+                  </label>
+                  <div>
+                    <button
+                      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[var(--primary-color)] px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                    >
+                      <span class="truncate">Send Message</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer
+        class="border-t border-[var(--border-color)] bg-[var(--secondary-bg)]"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col items-center justify-between gap-6 sm:flex-row"
+          >
+            <p class="text-sm text-[var(--text-muted)]">
+              © 2024 Ava Sterling. All rights reserved.
+            </p>
+            <div class="flex items-center gap-6">
+              <a
+                class="text-[var(--text-muted)] transition-colors hover:text-white"
+                href="#"
+              >
+                <div
+                  data-icon="TwitterLogo"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="24px"
+                    viewBox="0 0 256 256"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
+                    ></path>
+                  </svg>
+                </div>
+              </a>
+              <a
+                class="text-[var(--text-muted)] transition-colors hover:text-white"
+                href="#"
+              >
+                <div
+                  data-icon="GithubLogo"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="24px"
+                    viewBox="0 0 256 256"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
+                    ></path>
+                  </svg>
+                </div>
+              </a>
+              <a
+                class="text-[var(--text-muted)] transition-colors hover:text-white"
+                href="#"
+              >
+                <div
+                  data-icon="LinkedinLogo"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg
+                    fill="currentColor"
+                    height="24px"
+                    viewBox="0 0 256 256"
+                    width="24px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"
+                    ></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
