@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>게임 개발자 포트폴리오 - 플레이리스트</title>
+    <title>게임 개발자 포트폴리오 | Game Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
@@ -11,1511 +17,891 @@
         box-sizing: border-box;
       }
 
+      :root {
+        --primary-color: #00ff41;
+        --secondary-color: #ff0080;
+        --accent-color: #00d4ff;
+        --bg-dark: #0a0a0a;
+        --bg-darker: #050505;
+        --text-light: #ffffff;
+        --pixel-size: 4px;
+      }
+
       body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-        color: white;
-        min-height: 100vh;
+        font-family: "Orbitron", monospace;
+        background: var(--bg-dark);
+        color: var(--text-light);
         overflow-x: hidden;
       }
 
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-        display: flex;
-        min-height: calc(100vh - 200px);
-        position: relative;
-      }
-
-      .main-content {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        margin-right: 40px; /* CD 일부가 보일 공간을 줄임 */
-        justify-content: center; /* 완전히 중앙 정렬 */
-      }
-
-      .header {
-        text-align: center;
-        margin-bottom: 20px;
-        padding: 30px 0 10px 0;
-        transition: all 0.4s ease;
-      }
-
-      .header.collapsed {
-        margin-bottom: 10px;
-        padding: 20px 0 5px 0;
-      }
-
-      .header h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .intro-section {
-        max-width: 800px;
-        margin: 0 auto;
-        position: relative;
-      }
-
-      .intro-content {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 20px;
-        overflow: hidden;
-        transition: all 0.4s ease;
-      }
-
-      .intro-content.collapsed {
-        max-height: 0;
-        padding: 0 30px;
-        margin-bottom: 0;
-        opacity: 0;
-      }
-
-      .intro-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 20px;
-        color: rgba(255, 255, 255, 0.9);
-      }
-
-      .intro-skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        margin-bottom: 20px;
-      }
-
-      .skill-tag {
-        background: rgba(78, 205, 196, 0.2);
-        color: #4ecdc4;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        border: 1px solid rgba(78, 205, 196, 0.3);
-      }
-
-      .intro-contact {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .contact-link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 20px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .contact-link:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-      }
-
-      .toggle-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
-        margin: 0 auto;
-      }
-
-      .toggle-button:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-      }
-
-      .toggle-icon {
-        transition: transform 0.3s ease;
-      }
-
-      .toggle-button.collapsed .toggle-icon {
-        transform: rotate(180deg);
-      }
-
-      .current-track {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        padding: 0 20px;
-        transition: all 0.4s ease;
-        min-height: 0; /* flexbox 중앙 정렬을 위해 */
-      }
-
-      .main-cd-container {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        margin-bottom: 30px;
-      }
-
-      .main-cd {
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #333, #666, #333);
-        position: relative;
-        transition: transform 0.3s ease;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      }
-
-      .main-cd::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 50px;
-        height: 50px;
-        background: #000;
-        border-radius: 50%;
-      }
-
-      .main-cd::after {
-        content: "";
-        position: absolute;
-        top: 25px;
-        left: 25px;
-        right: 25px;
-        bottom: 25px;
-        border-radius: 50%;
-        background: conic-gradient(
-          from 0deg,
-          #ff6b6b,
-          #4ecdc4,
-          #45b7d1,
-          #96ceb4,
-          #feca57,
-          #ff9ff3,
-          #ff6b6b
-        );
-        opacity: 0.8;
-      }
-
-      .main-cd.spinning {
-        animation: spin 2s linear infinite;
-      }
-
-      .current-track-info {
-        text-align: center;
-        margin-bottom: 25px;
-      }
-
-      .current-track-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .current-track-artist {
-        font-size: 1.3rem;
-        opacity: 0.7;
-        margin-bottom: 15px;
-      }
-
-      .current-track-duration {
-        font-size: 1rem;
-        opacity: 0.5;
-      }
-
-      .main-play-button {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .main-play-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
-      }
-
-      .playlist-sidebar {
+      /* 배경 애니메이션 */
+      .bg-animation {
         position: fixed;
-        right: -200px; /* 패널 두께 줄임 */
         top: 0;
-        width: 250px; /* 패널 너비 줄임 */
-        height: 100vh; /* 전체 높이로 변경 */
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border-radius: 20px 0 0 20px;
-        padding: 40px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-right: none;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 100;
-      }
-
-      .playlist-sidebar:hover {
-        right: 0;
-      }
-
-      .playlist-sidebar::before {
-        content: "🎵";
-        position: absolute;
-        left: -40px; /* 트리거 영역 줄임 */
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px; /* 트리거 너비 줄임 */
-        height: 80px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 10px 0 0 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-right: none;
-      }
-
-      .playlist-title {
-        display: none; /* 제목 완전히 숨김 */
-      }
-
-      .cd-stack {
-        position: relative;
-        height: 100%; /* 전체 높이 사용 */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .cd-stack-inner {
-        display: contents; /* 데스크톱에서는 기본 레이아웃 유지 */
-      }
-
-      .stack-cd {
-        position: absolute;
-        width: 160px; /* CD 크기 2배로 증가 */
-        height: 160px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #333, #666, #333);
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        opacity: 0;
-        transform: translateX(50px) scale(0.8);
-      }
-
-      .playlist-sidebar:hover .stack-cd {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-      }
-
-      .stack-cd::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 24px; /* 중앙 홀 크기도 2배 */
-        height: 24px;
-        background: #000;
-        border-radius: 50%;
-      }
-
-      .stack-cd::after {
-        content: "";
-        position: absolute;
-        top: 12px; /* 여백도 2배 */
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-        border-radius: 50%;
-        background: conic-gradient(
-          from 0deg,
-          #ff6b6b,
-          #4ecdc4,
-          #45b7d1,
-          #96ceb4,
-          #feca57,
-          #ff9ff3,
-          #ff6b6b
-        );
-        opacity: 0.8;
-      }
-
-      .stack-cd:hover {
-        transform: translateX(-50%) scale(1.15) !important;
-        z-index: 200 !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-      }
-
-      .stack-cd.active {
-        border-color: #4ecdc4;
-        box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
-      }
-
-      /* CD 스택 위치 계산 - 4개 기준, 큰 CD에 맞게 조정 */
-      .stack-cd:nth-child(1) {
-        top: 10%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 4;
-        transition-delay: 0.1s;
-      }
-
-      .stack-cd:nth-child(2) {
-        top: 30%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 3;
-        transition-delay: 0.2s;
-      }
-
-      .stack-cd:nth-child(3) {
-        top: 50%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 2;
-        transition-delay: 0.3s;
-      }
-
-      .stack-cd:nth-child(4) {
-        top: 70%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 1;
-        transition-delay: 0.4s;
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(1) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(2) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(3) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(4) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      /* 8개 CD 위치 설정 */
-      .stack-cd:nth-child(5) {
-        top: 85%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 1;
-        transition-delay: 0.5s;
-      }
-
-      .stack-cd:nth-child(6) {
-        top: 95%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 1;
-        transition-delay: 0.6s;
-      }
-
-      .stack-cd:nth-child(7) {
-        top: 105%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 1;
-        transition-delay: 0.7s;
-      }
-
-      .stack-cd:nth-child(8) {
-        top: 115%;
-        left: 50%;
-        transform: translateX(50px) translateX(-50%) scale(0.8);
-        z-index: 1;
-        transition-delay: 0.8s;
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(5) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(6) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(7) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      .playlist-sidebar:hover .stack-cd:nth-child(8) {
-        transform: translateX(-50%) scale(1);
-      }
-
-      /* 8개 CD를 위한 더 촘촘한 배치 */
-      .cd-stack.dense .stack-cd:nth-child(1) {
-        top: 5%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(2) {
-        top: 15%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(3) {
-        top: 25%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(4) {
-        top: 35%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(5) {
-        top: 45%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(6) {
-        top: 55%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(7) {
-        top: 65%;
-      }
-      .cd-stack.dense .stack-cd:nth-child(8) {
-        top: 75%;
-      }
-
-      .cd-info-tooltip {
-        position: absolute;
-        left: 50%;
-        top: 100%;
-        transform: translateX(-50%) translateY(10px);
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        color: white;
-        padding: 12px 16px;
-        border-radius: 12px;
-        font-size: 0.85rem;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        z-index: 9999;
-        min-width: 200px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      }
-
-      .cd-info-tooltip::before {
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: 50%;
-        transform: translateX(-50%);
-        border: 6px solid transparent;
-        border-bottom-color: rgba(0, 0, 0, 0.95);
-      }
-
-      .cd-info-tooltip.tooltip-above::before {
-        top: 100%;
-        border-bottom-color: transparent;
-        border-top-color: rgba(0, 0, 0, 0.95);
-      }
-
-      .tooltip-title {
-        font-weight: bold;
-        margin-bottom: 4px;
-        color: #4ecdc4;
-      }
-
-      .tooltip-description {
-        font-size: 0.75rem;
-        opacity: 0.8;
-        line-height: 1.3;
-      }
-
-      .stack-cd:hover .cd-info-tooltip {
-        opacity: 1;
-        transform: translateX(-50%) translateY(5px);
-      }
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .track-info {
-        flex: 1;
-      }
-
-      .track-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-
-      .track-artist {
-        font-size: 1rem;
-        opacity: 0.7;
-        margin-bottom: 10px;
-      }
-
-      .track-duration {
-        font-size: 0.9rem;
-        opacity: 0.5;
-      }
-
-      .play-button {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .play-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
-      }
-
-      .detail-panel {
-        position: fixed;
-        bottom: -100%;
         left: 0;
-        right: 0;
-        height: 70vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(20px);
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        padding: 30px;
-        transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background:
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(0, 255, 65, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 0, 128, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(0, 212, 255, 0.1) 0%,
+            transparent 50%
+          );
+        animation: bgPulse 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes bgPulse {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 0.7;
+        }
+      }
+
+      /* 헤더 */
+      .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 50px;
+        background: rgba(10, 10, 10, 0.9);
+        backdrop-filter: blur(10px);
         z-index: 1000;
-        overflow-y: auto;
+        border-bottom: 2px solid var(--primary-color);
       }
 
-      .detail-panel.active {
-        bottom: 0;
-      }
-
-      .panel-header {
+      .nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 30px;
       }
 
-      .close-button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
+      .logo {
+        font-family: "Press Start 2P", cursive;
+        font-size: 16px;
+        color: var(--primary-color);
+        text-shadow: 0 0 10px var(--primary-color);
       }
 
-      .close-button:hover {
-        opacity: 1;
-      }
-
-      .project-details {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+      .nav-menu {
+        display: flex;
+        list-style: none;
         gap: 30px;
       }
 
-      .project-info h2 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-        color: #4ecdc4;
+      .nav-item {
+        position: relative;
       }
 
-      .project-info p {
-        line-height: 1.6;
+      .nav-link {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        padding: 10px 15px;
+        border: 2px solid transparent;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 15px var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      /* 메인 섹션 */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(45deg, var(--bg-darker), var(--bg-dark));
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: clamp(24px, 5vw, 48px);
+        margin-bottom: 20px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color),
+          var(--accent-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleGlow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        0% {
+          filter: drop-shadow(0 0 5px var(--primary-color));
+        }
+        100% {
+          filter: drop-shadow(0 0 20px var(--secondary-color));
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: var(--accent-color);
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--bg-dark);
+        text-decoration: none;
+        font-weight: 900;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 255, 65, 0.5);
+      }
+
+      /* 게임 캐릭터 애니메이션 */
+      .game-character {
+        position: absolute;
+        bottom: 50px;
+        right: 50px;
+        width: 100px;
+        height: 100px;
+        background: var(--primary-color);
+        clip-path: polygon(
+          20% 0%,
+          80% 0%,
+          100% 20%,
+          100% 80%,
+          80% 100%,
+          20% 100%,
+          0% 80%,
+          0% 20%
+        );
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* 섹션 스타일 */
+      .section {
+        padding: 100px 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 24px;
+        margin-bottom: 50px;
+        text-align: center;
+        color: var(--primary-color);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+      }
+
+      /* 프로젝트 그리드 */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        padding: 0;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(
+          45deg,
+          var(--bg-darker),
+          var(--primary-color)
+        );
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        border-bottom: 2px solid var(--primary-color);
+      }
+
+      .project-content {
+        padding: 30px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(0, 255, 65, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.5s ease;
+        opacity: 0;
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+        animation: shimmer 1s ease-in-out;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 255, 65, 0.3);
+        border-color: var(--secondary-color);
+      }
+
+      .project-title {
+        font-size: 18px;
         margin-bottom: 15px;
+        color: var(--accent-color);
+      }
+
+      .project-description {
+        margin-bottom: 20px;
+        line-height: 1.6;
       }
 
       .tech-stack {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        margin: 20px 0;
+        margin-top: auto;
       }
 
       .tech-tag {
-        background: rgba(78, 205, 196, 0.2);
-        color: #4ecdc4;
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        border: 1px solid rgba(78, 205, 196, 0.3);
-      }
-
-      .project-links {
-        display: flex;
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .project-link {
-        padding: 10px 20px;
-        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: transform 0.3s ease;
-      }
-
-      .project-link:hover {
-        transform: translateY(-2px);
-      }
-
-      .project-media {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .project-image {
-        width: 100%;
-        height: 200px;
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--primary-color);
+        color: var(--bg-dark);
+        padding: 5px 10px;
         border-radius: 15px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      /* 스킬 섹션 */
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .skill-category {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid var(--accent-color);
+        border-radius: 10px;
+        padding: 30px;
+      }
+
+      .skill-category h3 {
+        color: var(--accent-color);
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .skill-bar {
+        margin-bottom: 15px;
+      }
+
+      .skill-name {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .skill-progress {
+        width: 100%;
+        height: 8px;
+        background: var(--bg-darker);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-fill {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 4px;
+        transition: width 2s ease;
+      }
+
+      /* 연락처 섹션 */
+      .contact {
+        background: var(--bg-darker);
+        text-align: center;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-light);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 768px) {
+        .header {
+          padding: 15px 20px;
+        }
+
+        .nav-menu {
+          gap: 15px;
+        }
+
+        .section {
+          padding: 50px 20px;
+        }
+
+        .hero-title {
+          font-size: 20px;
+        }
+
+        .game-character {
+          width: 60px;
+          height: 60px;
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+
+      /* 스크롤 애니메이션 */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 맨 위로 버튼 */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: rgba(255, 255, 255, 0.5);
+        font-size: 20px;
+        color: var(--bg-dark);
+        box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        z-index: 1000;
       }
 
-      @media (max-width: 768px) {
-        .container {
-          flex-direction: column;
-          gap: 20px;
-          min-height: auto;
-        }
-
-        .main-content {
-          margin-right: 0;
-          justify-content: flex-start;
-        }
-
-        .current-track {
-          padding: 20px;
-        }
-
-        .header h1 {
-          font-size: 2rem;
-        }
-
-        .intro-content {
-          padding: 20px;
-        }
-
-        .intro-text {
-          font-size: 1rem;
-        }
-
-        .intro-contact {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .playlist-sidebar {
-          position: relative;
-          right: 0;
-          top: 0;
-          transform: none;
-          width: 100%;
-          height: auto;
-          border-radius: 20px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          margin-top: 20px;
-          padding: 20px;
-        }
-
-        .playlist-sidebar::before {
-          display: none;
-        }
-
-        .playlist-title {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
-        .cd-stack {
-          height: 220px; /* 툴팁 공간 확보를 위해 높이 증가 */
-          flex-direction: row;
-          overflow: hidden; /* 스크롤 제거 */
-          padding: 20px 0 60px 0; /* 하단 패딩 추가로 툴팁 공간 확보 */
-          justify-content: flex-start;
-          gap: 30px;
-          position: relative;
-          cursor: grab;
-          user-select: none;
-        }
-
-        .cd-stack:active {
-          cursor: grabbing;
-        }
-
-        .cd-stack-inner {
-          display: flex;
-          gap: 30px;
-          transition: transform 0.3s ease;
-          will-change: transform;
-          padding: 0 30px; /* 양쪽에 30px 여백 추가 */
-        }
-
-        .stack-cd {
-          position: relative !important;
-          top: 0 !important;
-          left: 0 !important;
-          transform: none !important;
-          opacity: 1 !important;
-          flex-shrink: 0;
-          transition-delay: 0s !important;
-          width: 120px !important; /* 모바일에서 CD 크기 조정 */
-          height: 120px !important;
-        }
-
-        .stack-cd::before {
-          width: 18px !important;
-          height: 18px !important;
-        }
-
-        .stack-cd::after {
-          top: 9px !important;
-          left: 9px !important;
-          right: 9px !important;
-          bottom: 9px !important;
-        }
-
-        .playlist-sidebar:hover .stack-cd {
-          transform: none !important;
-        }
-
-        .stack-cd:hover {
-          transform: scale(1.1) !important;
-        }
-
-        .cd-info-tooltip {
-          position: absolute;
-          left: 50%;
-          top: 100%;
-          transform: translateX(-50%) translateY(10px);
-          min-width: 180px;
-          z-index: 9999;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .stack-cd:hover .cd-info-tooltip {
-          opacity: 1;
-          transform: translateX(-50%) translateY(5px);
-        }
-
-        .cd-info-tooltip::before {
-          top: -6px;
-          border-color: transparent;
-          border-bottom-color: rgba(0, 0, 0, 0.95);
-          border-top: none;
-        }
-
-        .cd-info-tooltip.tooltip-above::before {
-          top: 100%;
-          border-bottom-color: transparent;
-          border-top-color: rgba(0, 0, 0, 0.95);
-        }
-
-        .main-cd-container {
-          width: 200px;
-          height: 200px;
-        }
-
-        .main-cd {
-          width: 200px;
-          height: 200px;
-        }
-
-        .main-cd::before {
-          width: 35px;
-          height: 35px;
-        }
-
-        .main-cd::after {
-          top: 18px;
-          left: 18px;
-          right: 18px;
-          bottom: 18px;
-        }
-
-        .current-track-title {
-          font-size: 1.8rem;
-        }
-
-        .current-track-artist {
-          font-size: 1rem;
-        }
-
-        .project-details {
-          grid-template-columns: 1fr;
-        }
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
 
-      /* 태블릿 환경 */
-      @media (max-width: 1024px) and (min-width: 769px) {
-        .playlist-sidebar {
-          right: -150px;
-          width: 200px;
-          padding: 30px 15px;
-        }
+      .scroll-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 255, 65, 0.5);
+        filter: brightness(1.2) saturate(1.1);
+      }
 
-        .playlist-sidebar::before {
-          left: -35px;
-          width: 35px;
-          font-size: 1rem;
-        }
-
-        .stack-cd {
-          width: 120px;
-          height: 120px;
-        }
-
-        .stack-cd::before {
-          width: 18px;
-          height: 18px;
-        }
-
-        .stack-cd::after {
-          top: 9px;
-          left: 9px;
-          right: 9px;
-          bottom: 9px;
-        }
-
-        .cd-info-tooltip {
-          position: absolute;
-          left: 50%;
-          top: 100%;
-          transform: translateX(-50%) translateY(10px);
-          min-width: 160px;
-          font-size: 0.8rem;
-          padding: 10px 12px;
-          z-index: 9999;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .stack-cd:hover .cd-info-tooltip {
-          opacity: 1;
-          transform: translateX(-50%) translateY(5px);
-        }
-
-        .tooltip-description {
-          font-size: 0.7rem;
-        }
+      .scroll-to-top:active {
+        transform: translateY(-2px);
       }
     </style>
   </head>
   <body>
-    <div class="header" id="header">
-      <h1>🎮 김개발 - 게임 개발자</h1>
-      <div class="intro-section">
-        <div class="intro-content" id="introContent">
-          <div class="intro-text">
-            안녕하세요! 3년차 게임 개발자 김개발입니다. Unity와 Unreal Engine을
-            활용한 다양한 장르의 게임 개발 경험을 보유하고 있으며, 특히 액션
-            RPG와 퍼즐 게임 개발에 특화되어 있습니다. 사용자 경험을 최우선으로
-            생각하며, 창의적이고 재미있는 게임을 만들기 위해 끊임없이 노력하고
-            있습니다.
-          </div>
-          <div class="intro-skills">
-            <span class="skill-tag">Unity 3D</span>
-            <span class="skill-tag">Unreal Engine</span>
-            <span class="skill-tag">C#</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Flutter</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Blender</span>
-          </div>
-          <div class="intro-contact">
-            <a href="mailto:developer@example.com" class="contact-link">
-              📧 developer@example.com
-            </a>
-            <a
-              href="https://github.com/developer"
-              class="contact-link"
-              target="_blank"
-            >
-              🐙 GitHub
-            </a>
-            <a
-              href="https://linkedin.com/in/developer"
-              class="contact-link"
-              target="_blank"
-            >
-              💼 LinkedIn
-            </a>
-          </div>
-        </div>
-        <button class="toggle-button" id="toggleButton">
-          <span>자기소개 접기</span>
-          <span class="toggle-icon">▲</span>
-        </button>
-      </div>
-    </div>
+    <div class="bg-animation"></div>
 
-    <div class="container">
-      <div class="main-content">
-        <div class="current-track">
-          <div class="main-cd-container">
-            <div class="main-cd" id="mainCD"></div>
-          </div>
-          <div class="current-track-info">
-            <div class="current-track-title" id="currentTitle">
-              RPG Adventure Quest
-            </div>
-            <div class="current-track-artist" id="currentArtist">
-              Unity 3D • 액션 RPG
-            </div>
-            <div class="current-track-duration" id="currentDuration">
-              개발 기간: 6개월
-            </div>
-          </div>
-          <button class="main-play-button" id="mainPlayButton">▶</button>
-        </div>
-      </div>
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">DEV.GAME</div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link">홈</a></li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link">프로젝트</a>
+          </li>
+          <li class="nav-item"><a href="#skills" class="nav-link">스킬</a></li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">연락처</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      <div class="playlist-sidebar">
-        <div class="cd-stack" id="cdStack">
-          <div class="cd-stack-inner" id="cdStackInner">
-            <div class="stack-cd active" data-project="rpg-adventure">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">RPG Adventure Quest</div>
-                <div class="tooltip-description">중세 판타지 3D 액션 RPG</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="puzzle-master">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Puzzle Master</div>
-                <div class="tooltip-description">브라우저 기반 퍼즐 게임</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="space-shooter">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Space Shooter Galaxy</div>
-                <div class="tooltip-description">우주 배경 2.5D 슈팅 게임</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="mobile-runner">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Endless Runner</div>
-                <div class="tooltip-description">모바일 무한 러닝 게임</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="tower-defense">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Tower Defense Pro</div>
-                <div class="tooltip-description">전략적 타워 디펜스 게임</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="racing-game">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Speed Racing</div>
-                <div class="tooltip-description">고속 레이싱 시뮬레이션</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="card-battle">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">Card Battle Arena</div>
-                <div class="tooltip-description">전략 카드 배틀 게임</div>
-              </div>
-            </div>
-            <div class="stack-cd" data-project="vr-adventure">
-              <div class="cd-info-tooltip">
-                <div class="tooltip-title">VR Adventure</div>
-                <div class="tooltip-description">가상현실 모험 게임</div>
-              </div>
-            </div>
-          </div>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">GAME DEVELOPER</h1>
+          <p class="hero-subtitle">창의적인 게임 세계를 만드는 개발자</p>
+          <a href="#projects" class="cta-button">프로젝트 보기</a>
         </div>
-      </div>
-    </div>
+        <div class="game-character"></div>
+      </section>
 
-    <div class="detail-panel" id="detailPanel">
-      <div class="panel-header">
-        <h2 id="panelTitle">프로젝트 상세 정보</h2>
-        <button class="close-button" id="closeButton">×</button>
-      </div>
-      <div class="project-details">
-        <div class="project-info">
-          <h2 id="projectTitle">프로젝트 제목</h2>
-          <p id="projectDescription">프로젝트 설명이 여기에 표시됩니다.</p>
-          <div class="tech-stack" id="techStack">
-            <!-- 기술 스택 태그들이 여기에 동적으로 추가됩니다 -->
+      <section id="projects" class="section">
+        <h2 class="section-title fade-in">PROJECTS</h2>
+        <div class="projects-grid">
+          <div class="project-card fade-in">
+            <div class="project-image">🎮</div>
+            <div class="project-content">
+              <h3 class="project-title">픽셀 어드벤처</h3>
+              <p class="project-description">
+                레트로 스타일의 2D 플랫포머 게임. 픽셀 아트와 치프튠 음악으로
+                구성된 향수를 불러일으키는 어드벤처 게임입니다.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Unity</span>
+                <span class="tech-tag">C#</span>
+                <span class="tech-tag">Pixel Art</span>
+              </div>
+            </div>
           </div>
-          <div class="project-links" id="projectLinks">
-            <!-- 프로젝트 링크들이 여기에 동적으로 추가됩니다 -->
+
+          <div class="project-card fade-in">
+            <div class="project-image">🏎️</div>
+            <div class="project-content">
+              <h3 class="project-title">사이버 레이싱</h3>
+              <p class="project-description">
+                미래적인 사이버펑크 세계관의 레이싱 게임. 네온 불빛과 고속
+                액션이 특징인 3D 레이싱 게임입니다.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Unreal Engine</span>
+                <span class="tech-tag">Blueprint</span>
+                <span class="tech-tag">3D Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card fade-in">
+            <div class="project-image">🧩</div>
+            <div class="project-content">
+              <h3 class="project-title">모바일 퍼즐</h3>
+              <p class="project-description">
+                중독성 있는 퍼즐 메커니즘과 아름다운 UI/UX로 구성된 모바일 퍼즐
+                게임입니다.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">Firebase</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card fade-in">
+            <div class="project-image">🥽</div>
+            <div class="project-content">
+              <h3 class="project-title">VR 체험관</h3>
+              <p class="project-description">
+                가상현실 기술을 활용한 교육용 체험 콘텐츠. 몰입감 있는 VR
+                환경에서의 학습 경험을 제공합니다.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-tag">Unity VR</span>
+                <span class="tech-tag">Oculus SDK</span>
+                <span class="tech-tag">C#</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="project-media">
-          <div class="project-image">🎮 게임 스크린샷</div>
-          <div class="project-image">📱 게임플레이 영상</div>
+      </section>
+
+      <section id="skills" class="section">
+        <h2 class="section-title fade-in">SKILLS</h2>
+        <div class="skills-container">
+          <div class="skill-category fade-in">
+            <h3>게임 엔진</h3>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Unity</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Unreal Engine</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Godot</span>
+                <span>60%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category fade-in">
+            <h3>프로그래밍</h3>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>C#</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>C++</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>JavaScript</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category fade-in">
+            <h3>아트 & 디자인</h3>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Photoshop</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Blender</span>
+                <span>65%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-name">
+                <span>Pixel Art</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-progress">
+                <div class="skill-fill" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <h2 class="section-title fade-in">CONTACT</h2>
+        <p class="fade-in">함께 멋진 게임을 만들어보세요!</p>
+        <div class="contact-info fade-in">
+          <a href="mailto:[email]@example.com" class="contact-item">
+            <span>📧</span>
+            <span>[email]@example.com</span>
+          </a>
+          <a href="https://github.com/[username]" class="contact-item">
+            <span>🐙</span>
+            <span>GitHub</span>
+          </a>
+          <a href="https://linkedin.com/in/[username]" class="contact-item">
+            <span>💼</span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- 맨 위로 버튼 -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
 
     <script>
-      const projectData = {
-        "rpg-adventure": {
-          title: "RPG Adventure Quest",
-          description:
-            "중세 판타지 세계를 배경으로 한 3D 액션 RPG 게임입니다. 플레이어는 용사가 되어 다양한 몬스터와 전투하며 레벨업하고 장비를 수집할 수 있습니다. Unity 엔진을 사용하여 개발했으며, C# 스크립팅과 3D 모델링 기술을 활용했습니다.",
-          techStack: ["Unity 3D", "C#", "Blender", "Photoshop", "Git"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "플레이 영상", url: "#" },
-            { text: "다운로드", url: "#" },
-          ],
-        },
-        "puzzle-master": {
-          title: "Puzzle Master",
-          description:
-            "브라우저에서 즐길 수 있는 퍼즐 게임입니다. 다양한 난이도의 퍼즐을 제공하며, 직관적인 UI와 부드러운 애니메이션으로 사용자 경험을 향상시켰습니다. HTML5 Canvas와 JavaScript를 사용하여 개발했습니다.",
-          techStack: ["JavaScript", "HTML5 Canvas", "CSS3", "Web Audio API"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "온라인 플레이", url: "#" },
-          ],
-        },
-        "space-shooter": {
-          title: "Space Shooter Galaxy",
-          description:
-            "우주를 배경으로 한 2.5D 슈팅 게임입니다. 다양한 적 패턴과 보스전, 업그레이드 시스템을 구현했습니다. Unreal Engine의 Blueprint 시스템을 활용하여 빠른 프로토타이핑과 개발을 진행했습니다.",
-          techStack: ["Unreal Engine", "Blueprint", "C++", "Photoshop"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "트레일러", url: "#" },
-            { text: "Steam", url: "#" },
-          ],
-        },
-        "mobile-runner": {
-          title: "Endless Runner",
-          description:
-            "모바일 플랫폼을 위한 무한 러닝 게임입니다. 터치 컨트롤과 직관적인 게임플레이로 누구나 쉽게 즐길 수 있습니다. Flutter를 사용하여 크로스 플랫폼 개발을 진행했으며, Firebase를 통한 리더보드 시스템을 구현했습니다.",
-          techStack: ["Flutter", "Dart", "Firebase", "Adobe Illustrator"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "Google Play", url: "#" },
-            { text: "App Store", url: "#" },
-          ],
-        },
-        "tower-defense": {
-          title: "Tower Defense Pro",
-          description:
-            "전략적 사고가 필요한 타워 디펜스 게임입니다. 다양한 타워와 업그레이드 시스템, 50개 이상의 스테이지를 제공합니다. React와 Canvas API를 활용하여 부드러운 애니메이션과 직관적인 UI를 구현했습니다.",
-          techStack: ["React", "TypeScript", "Canvas API", "Node.js"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "플레이 데모", url: "#" },
-          ],
-        },
-        "racing-game": {
-          title: "Speed Racing",
-          description:
-            "고속 레이싱 시뮬레이션 게임입니다. 실제 물리 엔진을 적용하여 현실적인 주행감을 구현했으며, 멀티플레이어 모드를 지원합니다. Unity와 Photon을 사용하여 실시간 온라인 레이싱을 가능하게 했습니다.",
-          techStack: ["Unity 3D", "C#", "Photon", "Blender"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "트레일러", url: "#" },
-            { text: "다운로드", url: "#" },
-          ],
-        },
-        "card-battle": {
-          title: "Card Battle Arena",
-          description:
-            "전략적 카드 배틀 게임입니다. 200여 종의 카드와 다양한 덱 빌딩 시스템을 제공합니다. Vue.js와 Socket.io를 활용하여 실시간 PvP 배틀을 구현했으며, AI 상대와의 싱글플레이도 지원합니다.",
-          techStack: ["Vue.js", "Socket.io", "MongoDB", "Express"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "온라인 플레이", url: "#" },
-          ],
-        },
-        "vr-adventure": {
-          title: "VR Adventure",
-          description:
-            "가상현실 모험 게임입니다. Oculus와 HTC Vive를 지원하며, 몰입감 있는 VR 경험을 제공합니다. Unreal Engine의 VR 템플릿을 기반으로 개발했으며, 직관적인 손 제스처 컨트롤을 구현했습니다.",
-          techStack: ["Unreal Engine", "C++", "VR SDK", "3ds Max"],
-          links: [
-            { text: "GitHub", url: "#" },
-            { text: "VR 데모", url: "#" },
-          ],
-        },
+      // 스크롤 애니메이션
+      const observerOptions = {
+        threshold: 0.3,
+        rootMargin: "0px 0px -150px 0px",
       };
 
-      const stackCDs = document.querySelectorAll(".stack-cd");
-      const mainCD = document.getElementById("mainCD");
-      const mainPlayButton = document.getElementById("mainPlayButton");
-      const detailPanel = document.getElementById("detailPanel");
-      const closeButton = document.getElementById("closeButton");
+      // Contact 섹션용 별도 옵저버 (더 관대한 설정)
+      const contactObserverOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-      let currentProject = "rpg-adventure";
-
-      // CD 스택 개수에 따라 클래스 추가
-      const cdStack = document.getElementById("cdStack");
-      if (stackCDs.length > 4) {
-        cdStack.classList.add("dense");
-      }
-
-      // 스택 CD 클릭 이벤트
-      stackCDs.forEach((cd) => {
-        cd.addEventListener("click", () => {
-          const projectId = cd.getAttribute("data-project");
-          selectProject(projectId);
-        });
-
-        // 툴팁 오버플로우 처리
-        cd.addEventListener("mouseenter", () => {
-          const tooltip = cd.querySelector(".cd-info-tooltip");
-          if (tooltip) {
-            adjustTooltipPosition(cd, tooltip);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
           }
         });
-      });
+      }, observerOptions);
 
-      // 툴팁 위치 조정 함수 (오버플로우 방지)
-      function adjustTooltipPosition(cd, tooltip) {
-        // 기본 위치로 리셋
-        tooltip.style.left = "50%";
-        tooltip.style.top = "100%";
-        tooltip.style.transform = "translateX(-50%) translateY(10px)";
-        tooltip.classList.remove(
-          "tooltip-above",
-          "tooltip-left",
-          "tooltip-right"
-        );
-
-        // 잠시 후 위치 체크 (렌더링 후)
-        setTimeout(() => {
-          const cdRect = cd.getBoundingClientRect();
-          const tooltipRect = tooltip.getBoundingClientRect();
-          const viewportWidth = window.innerWidth;
-          const viewportHeight = window.innerHeight;
-
-          // 오른쪽 경계 체크
-          if (tooltipRect.right > viewportWidth - 10) {
-            tooltip.style.left = "auto";
-            tooltip.style.right = "0";
-            tooltip.style.transform = "translateY(10px)";
-            tooltip.classList.add("tooltip-right");
+      const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
           }
-          // 왼쪽 경계 체크
-          else if (tooltipRect.left < 10) {
-            tooltip.style.left = "0";
-            tooltip.style.transform = "translateY(10px)";
-            tooltip.classList.add("tooltip-left");
-          }
-
-          // 하단 경계 체크
-          if (tooltipRect.bottom > viewportHeight - 10) {
-            tooltip.style.top = "auto";
-            tooltip.style.bottom = "100%";
-            tooltip.style.transform = tooltip.style.transform.replace(
-              "translateY(10px)",
-              "translateY(-10px)"
-            );
-            tooltip.classList.add("tooltip-above");
-          }
-        }, 10);
-      }
-
-      // 메인 플레이 버튼 클릭 이벤트
-      mainPlayButton.addEventListener("click", () => {
-        playCurrentProject();
-      });
-
-      function selectProject(projectId) {
-        currentProject = projectId;
-        const project = projectData[projectId];
-
-        // 현재 선택된 CD 표시 업데이트
-        stackCDs.forEach((cd) => cd.classList.remove("active"));
-        document
-          .querySelector(`[data-project="${projectId}"]`)
-          .classList.add("active");
-
-        // 메인 정보 업데이트
-        document.getElementById("currentTitle").textContent = project.title;
-        document.getElementById("currentArtist").textContent =
-          getProjectSubtitle(projectId);
-        document.getElementById("currentDuration").textContent =
-          getProjectDuration(projectId);
-      }
-
-      function playCurrentProject() {
-        // 메인 CD 회전 애니메이션
-        mainCD.classList.add("spinning");
-        mainPlayButton.innerHTML = "⏸";
-
-        // 패널 표시
-        showProjectDetails(currentProject);
-
-        // 3초 후 CD 회전 중지
-        setTimeout(() => {
-          mainCD.classList.remove("spinning");
-          mainPlayButton.innerHTML = "▶";
-        }, 3000);
-      }
-
-      function getProjectSubtitle(projectId) {
-        const subtitles = {
-          "rpg-adventure": "Unity 3D • 액션 RPG",
-          "puzzle-master": "JavaScript • 퍼즐 게임",
-          "space-shooter": "Unreal Engine • 슈팅 게임",
-          "mobile-runner": "Flutter • 모바일 게임",
-          "tower-defense": "React • 전략 게임",
-          "racing-game": "Unity 3D • 레이싱 게임",
-          "card-battle": "Vue.js • 카드 게임",
-          "vr-adventure": "Unreal Engine • VR 게임",
-        };
-        return subtitles[projectId];
-      }
-
-      function getProjectDuration(projectId) {
-        const durations = {
-          "rpg-adventure": "개발 기간: 6개월",
-          "puzzle-master": "개발 기간: 3개월",
-          "space-shooter": "개발 기간: 4개월",
-          "mobile-runner": "개발 기간: 2개월",
-          "tower-defense": "개발 기간: 4개월",
-          "racing-game": "개발 기간: 5개월",
-          "card-battle": "개발 기간: 3개월",
-          "vr-adventure": "개발 기간: 7개월",
-        };
-        return durations[projectId];
-      }
-
-      function showProjectDetails(projectId) {
-        const project = projectData[projectId];
-
-        document.getElementById("projectTitle").textContent = project.title;
-        document.getElementById("projectDescription").textContent =
-          project.description;
-
-        // 기술 스택 표시
-        const techStackContainer = document.getElementById("techStack");
-        techStackContainer.innerHTML = "";
-        project.techStack.forEach((tech) => {
-          const tag = document.createElement("span");
-          tag.className = "tech-tag";
-          tag.textContent = tech;
-          techStackContainer.appendChild(tag);
         });
+      }, contactObserverOptions);
 
-        // 프로젝트 링크 표시
-        const linksContainer = document.getElementById("projectLinks");
-        linksContainer.innerHTML = "";
-        project.links.forEach((link) => {
-          const linkElement = document.createElement("a");
-          linkElement.className = "project-link";
-          linkElement.href = link.url;
-          linkElement.textContent = link.text;
-          linkElement.target = "_blank";
-          linksContainer.appendChild(linkElement);
-        });
-
-        // 패널 표시
-        detailPanel.classList.add("active");
-      }
-
-      closeButton.addEventListener("click", () => {
-        detailPanel.classList.remove("active");
-      });
-
-      // 패널 외부 클릭 시 닫기
-      detailPanel.addEventListener("click", (e) => {
-        if (e.target === detailPanel) {
-          detailPanel.classList.remove("active");
-        }
-      });
-
-      // ESC 키로 패널 닫기
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          detailPanel.classList.remove("active");
-        }
-      });
-
-      // 자기소개 접기/펼치기 기능
-      const toggleButton = document.getElementById("toggleButton");
-      const introContent = document.getElementById("introContent");
-      const header = document.getElementById("header");
-      let isCollapsed = false;
-
-      toggleButton.addEventListener("click", () => {
-        isCollapsed = !isCollapsed;
-
-        if (isCollapsed) {
-          introContent.classList.add("collapsed");
-          toggleButton.classList.add("collapsed");
-          toggleButton.querySelector("span").textContent = "자기소개 펼치기";
-          header.classList.add("collapsed");
+      // Contact 섹션의 fade-in 요소들은 별도 옵저버 사용
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        if (el.closest("#contact")) {
+          contactObserver.observe(el);
         } else {
-          introContent.classList.remove("collapsed");
-          toggleButton.classList.remove("collapsed");
-          toggleButton.querySelector("span").textContent = "자기소개 접기";
-          header.classList.remove("collapsed");
+          observer.observe(el);
         }
       });
 
-      // 모바일 드래그 기능
-      function initMobileDrag() {
-        const cdStack = document.getElementById("cdStack");
-        const cdStackInner = document.getElementById("cdStackInner");
-
-        if (!cdStack || !cdStackInner) return;
-
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let initialTransform = 0;
-        let animationId = 0;
-
-        function getTransformX() {
-          const style = window.getComputedStyle(cdStackInner);
-          const matrix = style.transform;
-          if (matrix === "none") return 0;
-          const values = matrix.split("(")[1].split(")")[0].split(",");
-          return parseFloat(values[4]) || 0;
-        }
-
-        function setTransform(x) {
-          const containerWidth = cdStack.clientWidth;
-          const cdCount = cdStackInner.children.length;
-          const cdWidth = 120; // CD 크기
-          const gap = 30; // CD 간격
-          const padding = 30; // 양쪽 패딩
-
-          // 전체 콘텐츠 너비 = 패딩 + CD들 + 간격들 + 패딩
-          const totalContentWidth =
-            padding + cdCount * cdWidth + (cdCount - 1) * gap + padding;
-
-          const maxTransform = 0; // 맨 처음 위치
-          const minTransform = Math.min(0, containerWidth - totalContentWidth); // 맨 끝 위치
-
-          const clampedX = Math.max(minTransform, Math.min(maxTransform, x));
-          cdStackInner.style.transform = `translateX(${clampedX}px)`;
-          return clampedX;
-        }
-
-        function handleStart(e) {
-          isDragging = true;
-          startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
-          initialTransform = getTransformX();
-          cdStackInner.style.transition = "none";
-          cdStack.style.cursor = "grabbing";
-
-          if (animationId) {
-            cancelAnimationFrame(animationId);
-          }
-        }
-
-        function handleMove(e) {
-          if (!isDragging) return;
-
+      // 부드러운 스크롤
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          currentX = e.type.includes("mouse")
-            ? e.clientX
-            : e.touches[0].clientX;
-          const deltaX = currentX - startX;
-          const newTransform = initialTransform + deltaX;
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const targetPosition = target.offsetTop - 80; // 헤더 높이 고려
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 800; // 애니메이션 지속 시간 (ms)
+            let start = null;
 
-          setTransform(newTransform);
-        }
+            const smoothScroll = (timestamp) => {
+              if (!start) start = timestamp;
+              const progress = timestamp - start;
+              const percentage = Math.min(progress / duration, 1);
 
-        function handleEnd() {
-          if (!isDragging) return;
+              // easeInOutCubic 이징 함수
+              const ease =
+                percentage < 0.5
+                  ? 4 * percentage * percentage * percentage
+                  : (percentage - 1) *
+                      (2 * percentage - 2) *
+                      (2 * percentage - 2) +
+                    1;
 
-          isDragging = false;
-          cdStackInner.style.transition = "transform 0.3s ease";
-          cdStack.style.cursor = "grab";
+              window.scrollTo(0, startPosition + distance * ease);
 
-          // 관성 효과를 위한 스냅 기능
-          const currentTransform = getTransformX();
-          const cdWidth = 150; // CD 크기 + 간격 (120px + 30px)
+              if (progress < duration) {
+                window.requestAnimationFrame(smoothScroll);
+              }
+            };
 
-          // 현재 위치에서 가장 가까운 CD 인덱스 계산
-          const snapIndex = Math.round(-currentTransform / cdWidth);
-          const snapPosition = -snapIndex * cdWidth;
+            window.requestAnimationFrame(smoothScroll);
+          }
+        });
+      });
 
-          setTransform(snapPosition);
-        }
+      // 스킬 바 애니메이션
+      const skillBars = document.querySelectorAll(".skill-fill");
+      const skillObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const skillFill = entry.target;
+              const width = skillFill.style.width;
+              skillFill.style.width = "0%";
+              setTimeout(() => {
+                skillFill.style.width = width;
+              }, 200);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
 
-        // 마우스 이벤트
-        cdStack.addEventListener("mousedown", handleStart);
-        document.addEventListener("mousemove", handleMove);
-        document.addEventListener("mouseup", handleEnd);
+      skillBars.forEach((bar) => {
+        skillObserver.observe(bar);
+      });
 
-        // 터치 이벤트
-        cdStack.addEventListener("touchstart", handleStart, { passive: false });
-        document.addEventListener("touchmove", handleMove, { passive: false });
-        document.addEventListener("touchend", handleEnd);
+      // 마우스 클릭 효과
+      document.addEventListener("click", (e) => {
+        const ripple = document.createElement("div");
+        ripple.style.position = "fixed";
+        ripple.style.left = e.clientX + "px";
+        ripple.style.top = e.clientY + "px";
+        ripple.style.width = "10px";
+        ripple.style.height = "10px";
+        ripple.style.background = "var(--primary-color)";
+        ripple.style.borderRadius = "50%";
+        ripple.style.pointerEvents = "none";
+        ripple.style.zIndex = "9998";
+        ripple.style.animation = "ripple 0.6s ease-out forwards";
 
-        // 드래그 중 선택 방지
-        cdStack.addEventListener("dragstart", (e) => e.preventDefault());
+        document.body.appendChild(ripple);
 
-        // 초기 위치 설정 (여백 유지)
         setTimeout(() => {
-          setTransform(0);
-        }, 100);
-      }
+          ripple.remove();
+        }, 600);
+      });
 
-      // 화면 크기 변경 감지하여 드래그 기능 초기화
-      function checkMobileAndInitDrag() {
-        if (window.innerWidth <= 768) {
-          initMobileDrag();
+      // 리플 애니메이션 CSS 추가
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                0% {
+                    transform: translate(-50%, -50%) scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(10);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // 맨 위로 버튼 기능
+      const scrollToTopBtn = document.getElementById("scrollToTop");
+
+      // 스크롤 이벤트 리스너
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add("visible");
+        } else {
+          scrollToTopBtn.classList.remove("visible");
         }
-      }
+      });
 
-      // 초기 실행 및 리사이즈 이벤트
-      checkMobileAndInitDrag();
-      window.addEventListener("resize", checkMobileAndInitDrag);
+      // 버튼 클릭 이벤트
+      scrollToTopBtn.addEventListener("click", () => {
+        // 부드러운 스크롤 애니메이션
+        const scrollToTop = () => {
+          const currentScroll =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          if (currentScroll > 10) {
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, currentScroll - currentScroll / 8);
+          } else {
+            // 완전히 맨 위로 이동
+            window.scrollTo(0, 0);
+          }
+        };
+        scrollToTop();
+      });
     </script>
   </body>
 </html>
